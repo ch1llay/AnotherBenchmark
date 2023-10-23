@@ -21,7 +21,7 @@ func initBenchmark(cpuCountPercent int) int {
 
 	goroutineAmount := newCpuCount * 2
 
-	fmt.Printf("Исползуем %d логических ядер, и %d горутин\n", newCpuCount, goroutineAmount)
+	fmt.Printf("Исползуем %d логических ядер и %d горутин\n", newCpuCount, goroutineAmount)
 
 	return newCpuCount * 2
 
