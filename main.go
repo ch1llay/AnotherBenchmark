@@ -62,14 +62,13 @@ func benchmarkFunc(i int, points []int64) {
 }
 
 func max(slice []int64) int64 {
-	var max_num int64
-	max_num = slice[0]
+	maxNum := slice[0]
 
 	for _, element := range slice {
-		max_num = int64(math.Max(float64(max_num), float64(element)))
+		maxNum = int64(math.Max(float64(maxNum), float64(element)))
 	}
 
-	return max_num
+	return maxNum
 }
 
 func sum(arr []int64) int64 {
