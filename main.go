@@ -118,5 +118,8 @@ func main() {
 	startBenchmark(goroutineAmount, hardTimeSeconds)
 
 	var s string
-	fmt.Scanf("%s,\n", s)
+	_, err = fmt.Scanf("%s,\n", s)
+	if err != nil {
+		return
+	}
 }
