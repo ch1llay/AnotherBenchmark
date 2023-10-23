@@ -1,3 +1,3 @@
-module Beshbarmak1Benchmark
+module BeshbarmakBenchmark
 
 go 1.20

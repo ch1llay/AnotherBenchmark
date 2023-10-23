@@ -62,7 +62,7 @@ func startBenchmark(goroutineAmount int, hardTimeSeconds int) {
 	wg.Wait()
 	core := max(points)
 	all := sum(points)
-	fmt.Printf("core - %d, all - %d\n", core, all)
+	fmt.Printf("single - %d, all - %d\n", core, all)
 }
 
 func benchmarkFunc(i int, points []int64) {
