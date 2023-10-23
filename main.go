@@ -33,12 +33,12 @@ func timer(wg *sync.WaitGroup, hardTimeSeconds int) {
 	for curSeconds < hardTimeSeconds {
 		curSeconds = int(time.Now().Sub(startTime).Seconds())
 		dif := hardTimeSeconds - curSeconds
+
 		if curDiff != dif {
 			curDiff = dif
-		}
-
-		if curDiff%10 == 0 {
-			fmt.Printf("До бешбармаков осталось %d секунд\n", dif)
+			if curDiff%10 == 0 {
+				fmt.Printf("До бешбармаков осталось %d секунд\n", dif)
+			}
 		}
 
 	}
@@ -62,7 +62,7 @@ func startBenchmark(goroutineAmount int, hardTimeSeconds int) {
 	wg.Wait()
 	core := max(points)
 	all := sum(points)
-	fmt.Printf("core - %d, all - %d", core, all)
+	fmt.Printf("core - %d, all - %d\n", core, all)
 }
 
 func benchmarkFunc(i int, points []int64) {
@@ -117,6 +117,7 @@ func main() {
 
 	startBenchmark(goroutineAmount, hardTimeSeconds)
 
+	fmt.Println("Тапните по клаве и нажмите enter")
 	var s string
 	_, err = fmt.Scanf("%s,\n", s)
 	if err != nil {
