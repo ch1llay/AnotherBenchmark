@@ -33,8 +33,8 @@ func timer(wg *sync.WaitGroup, hardTimeSeconds int) {
 	for curSeconds < hardTimeSeconds {
 		curSeconds = int(time.Now().Sub(startTime).Seconds())
 		dif := hardTimeSeconds - curSeconds
-		if curDiff != curSeconds {
-			curDiff = curSeconds
+		if curDiff != dif {
+			curDiff = dif
 		}
 
 		if curDiff%10 == 0 {
