@@ -85,14 +85,21 @@ func main() {
 	var hardTimeSeconds int
 	var defaultCpuCountPercent int
 
+	fmt.Println("Подготавливаем процессор к приготовлению бешбармаков")
 	fmt.Println("Введите время(в секундах) для подготовки процессора к приготовлению бешбармаков")
-	fmt.Scanf("%d\n", &hardTimeSeconds)
+	_, err := fmt.Scanf("%d\n", &hardTimeSeconds)
+
+	if err != nil {
+		return
+	}
 
 	fmt.Println("Введите число в процентах (0-100) на сколько хорошо процессор будет готовиться к приготовлению бешбармаков")
-	fmt.Scanf("%d\n", &defaultCpuCountPercent)
+	_, err = fmt.Scanf("%d\n", &defaultCpuCountPercent)
+	if err != nil {
+		return
+	}
 
 	goroutineAmount := initBenchmark(defaultCpuCountPercent)
 
 	startBenchmark(goroutineAmount, hardTimeSeconds)
-
 }
