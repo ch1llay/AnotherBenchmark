@@ -41,7 +41,9 @@ func startBenchmark(goroutineAmount int, hardTimeSeconds int) {
 	points := make([]int64, goroutineAmount, goroutineAmount)
 
 	for i := 0; i < goroutineAmount; i++ {
-		go benchmarkFunc(i, points)
+		go func() {
+			benchmarkFunc(i, points)
+		}()
 	}
 
 	wg.Wait()
