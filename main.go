@@ -16,7 +16,7 @@ func initBenchmark(cpuCountPercent int) int {
 	}
 
 	cpuCount := runtime.NumCPU()
-	newCpuCount := cpuCount*cpuCountPercent/100 - 1
+	newCpuCount := cpuCount * cpuCountPercent / 100
 	runtime.GOMAXPROCS(newCpuCount)
 
 	goroutineAmount := newCpuCount * 2
@@ -28,7 +28,19 @@ func initBenchmark(cpuCountPercent int) int {
 }
 func timer(wg *sync.WaitGroup, hardTimeSeconds int) {
 	startTime := time.Now()
-	for int(time.Now().Sub(startTime).Seconds()) < hardTimeSeconds {
+	curSeconds := 0
+	curDiff := hardTimeSeconds
+	for curSeconds < hardTimeSeconds {
+		curSeconds = int(time.Now().Sub(startTime).Seconds())
+		dif := hardTimeSeconds - curSeconds
+		if curDiff != curSeconds {
+			curDiff = curSeconds
+		}
+
+		if curDiff%10 == 0 {
+			fmt.Printf("До бешбармаков осталось %d секунд\n", dif)
+		}
+
 	}
 	fmt.Printf("Прошло %d секунд\n", hardTimeSeconds)
 	wg.Done()
@@ -41,8 +53,9 @@ func startBenchmark(goroutineAmount int, hardTimeSeconds int) {
 	points := make([]int64, goroutineAmount, goroutineAmount)
 
 	for i := 0; i < goroutineAmount; i++ {
+		ii := i
 		go func() {
-			benchmarkFunc(i, points)
+			benchmarkFunc(ii, points)
 		}()
 	}
 
@@ -103,4 +116,7 @@ func main() {
 	goroutineAmount := initBenchmark(defaultCpuCountPercent)
 
 	startBenchmark(goroutineAmount, hardTimeSeconds)
+
+	var s string
+	fmt.Scanf("%s,\n", s)
 }
